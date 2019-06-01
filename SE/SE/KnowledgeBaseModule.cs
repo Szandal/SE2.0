@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace SE
 {
-    class KnowledgeBase
+    class KnowledgeBaseModule
     {
         private LinkedList<Rule> ListOfRules;
         private LinkedList<string> ListOffacts;
         //private 
+        
+
+
+
     }
 }

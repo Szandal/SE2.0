@@ -20,9 +20,20 @@ namespace SE
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Inicjalizacja modułów systemu ekspertowego 
+        #region Inicjalizacja 
+        KnowledgeAcquisitionModule KnowledgeAcquisitionModule = new KnowledgeAcquisitionModule();
+        KnowledgeBaseModule KnowledgeBase = new KnowledgeBaseModule();
+        InferenceModule InferenceModule = new InferenceModule();
+        ExplanatoryModule ExplanatoryModule = new ExplanatoryModule();
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+
+
     }
 }

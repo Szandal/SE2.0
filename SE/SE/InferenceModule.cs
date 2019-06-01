@@ -8,11 +8,11 @@ namespace SE
 {
     class InferenceModule
     {
-        public List<string> ForwardInference(KnowledgeBase knowledgeBase)
+        public List<string> ForwardInference(KnowledgeBaseModule knowledgeBase)
         {
             return null;
         }
-        public bool BackwardsInference(string hypothesis, KnowledgeBase knowledgeBase)
+        public bool BackwardsInference(string hypothesis, KnowledgeBaseModule knowledgeBase)
         {
             return false;
         }
