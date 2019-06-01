@@ -9,12 +9,12 @@ namespace SE
     class Rule
     {
         private string conclusion;
-        private List<string> evidence;
+        private List<string> Evidence;
 
         public Rule(string conclusion, List<string> evidence)
         {
             this.conclusion = conclusion;
-            this.evidence = evidence;
+            this.Evidence = evidence;
         }
         public int NumberOfEvidences()
         {

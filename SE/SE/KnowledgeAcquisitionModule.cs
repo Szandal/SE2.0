@@ -12,23 +12,20 @@ namespace SE
 
         private Rule AddRule(string rule)
         {
-
-            if (!CheckRule(rule))
+            if (CheckRule(rule))
             {
-                throw new System.Exception("zła zasada");
+                string [] elsements = rule.Split(new char[] {'=','+'});
+                List<string> Evidence = elsements.ToList();
+                Evidence.RemoveAt(Evidence.Count-1);
+                return new Rule(elsements.Last(), Evidence);
             }
-            string [] elsements = rule.Split(new char[] {'=','+'});
-            List<string> evidence = elsements.ToList();
-            evidence.RemoveAt(evidence.Count-1);
-            return new Rule(elsements.Last(), evidence);
+            return null;
         }
         private string AddFact(string fakt)
         {
-            if (!CheckFact(fakt))
-            {
-                throw new System.Exception("zły fakt");
-            }
-            return fakt;
+            if (CheckFact(fakt))
+                return fakt;
+            return null;
         }
 
         private void RemoveRule()
@@ -42,16 +39,16 @@ namespace SE
 
         private bool CheckRule(string rule)
         {
-            if (rule.IndexOf('=') != rule.LastIndexOf('=') || rule.IndexOf('=') == -1)
+            if (rule.IndexOf('=') == -1 || rule.IndexOf('=') != rule.LastIndexOf('='))
             {
-                return false;
+                throw new System.Exception("zła zasada");
             }
             string []fakts = rule.Split(new char[]{'=', '+' });
             foreach(string fakt in fakts)
             {
                 if (!CheckFact(fakt))
                 {
-                    return false;
+                    throw new System.Exception("zła zasada");
                 }
             }
             return true;
@@ -62,7 +59,7 @@ namespace SE
             MatchCollection match = rx.Matches(fakt);
             if (match.Count != 1)
             {
-                return false;
+                throw new System.Exception("zły fakt");
             }
             return true;
         }
