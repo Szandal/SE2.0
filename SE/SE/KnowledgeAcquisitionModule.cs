@@ -11,7 +11,6 @@ namespace SE
 
         private void AddRule()
         {
-
         }
         private void AddFact()
         {

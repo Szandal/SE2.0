@@ -9,6 +9,6 @@ namespace SE
     class Rule
     {
         private string conclusion;
-        private string evidence;
+        private LinkedList<string> evidence;
     }
 }
