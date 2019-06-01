@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace SE
 {
-    class Class2
+    class Rule
     {
+        private string conclusion;
+        private string evidence;
     }
 }

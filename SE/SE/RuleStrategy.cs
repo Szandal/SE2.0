@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SE
 {
-    class Class1
+    class RulesStrategy
     {
     }
 }
