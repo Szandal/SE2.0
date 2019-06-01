@@ -9,6 +9,13 @@ namespace SE
     class Rule
     {
         private string conclusion;
-        private LinkedList<string> evidence;//
+        private List<string> evidence;
+
+        public Rule(string conclusion, List<string> evidence)
+        {
+            this.conclusion = conclusion;
+            this.evidence = evidence;
+        }
+
     }
 }
