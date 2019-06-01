@@ -10,7 +10,7 @@ namespace SE
     class KnowledgeAcquisitionModule
     {
 
-        private Rule AddRule(string rule)
+        public Rule AddRule(string rule)
         {
             if (CheckRule(rule))
             {
@@ -21,18 +21,18 @@ namespace SE
             }
             return null;
         }
-        private string AddFact(string fakt)
+        public string AddFact(string fakt)
         {
             if (CheckFact(fakt))
                 return fakt;
             return null;
         }
 
-        private void RemoveRule()
+        public void RemoveRule()
         {
 
         }
-        private void RemoveFact()
+        public void RemoveFact()
         {
 
         }
@@ -41,7 +41,7 @@ namespace SE
         {
             if (rule.IndexOf('=') == -1 || rule.IndexOf('=') != rule.LastIndexOf('='))
             {
-                throw new System.Exception("zła zasada");
+                throw new Exception("zła zasada");
             }
 
            
@@ -50,7 +50,7 @@ namespace SE
             {
                 if (!CheckFact(fakt))
                 {
-                    throw new System.Exception("zła zasada");
+                    throw new Exception("zła zasada");
                 }
             }
             return true;

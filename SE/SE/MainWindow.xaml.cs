@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace SE
         // Inicjalizacja modułów systemu ekspertowego 
         #region Inicjalizacja 
         KnowledgeAcquisitionModule KnowledgeAcquisitionModule = new KnowledgeAcquisitionModule();
-        KnowledgeBaseModule KnowledgeBase = new KnowledgeBaseModule();
+        KnowledgeBaseModule KnowledgeBaseModule = new KnowledgeBaseModule();
         InferenceModule InferenceModule = new InferenceModule();
         ExplanatoryModule ExplanatoryModule = new ExplanatoryModule();
         #endregion
@@ -35,7 +36,19 @@ namespace SE
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Rule.Text
+
+            try
+            {
+                KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(Rule.Text));
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+   
+
+         
         }
     }
 }
