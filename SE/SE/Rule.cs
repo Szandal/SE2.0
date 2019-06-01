@@ -8,7 +8,12 @@ namespace SE
 {
     class Rule
     {
-        private string conclusion;
-        private LinkedList<string> evidence;//
+        private string Conclusion;
+        private LinkedList<string> Evidence;//
+
+        public int NumberOfEvidences()
+        {
+            return Evidence.Count();
+        }
     }
 }

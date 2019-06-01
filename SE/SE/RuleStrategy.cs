@@ -12,25 +12,44 @@ namespace SE
         {
             switch (Strategy)
             {
-                case "1":
-                    return null;
-                    break;
-                case "2":
-                    return null;
-                    break;
+                case "FreshnessStrategy":
+                    return FreshnessStrategy(ListOfRules);
+                case "StrategyOfSpecificity":
+                    return StrategyOfSpecificity(ListOfRules);
                 default:
                     throw new Exception();
             }
         }
 
-        private Rule Strategia1()
+        private Rule FreshnessStrategy(List<Rule> ListOfRules)
         {
-            return null;
+            return ListOfRules.Last();
         }
 
-        private Rule Strategia2()
+        private Rule StrategyOfSpecificity(List<Rule> ListOfRules)
         {
-            return null;
+            bool Top;
+
+            foreach (var rule in ListOfRules)
+            {
+                Top = true;
+
+                foreach (var rule2 in ListOfRules)
+                {
+                    if (rule.NumberOfEvidences() < rule2.NumberOfEvidences())
+                    {
+                        Top = false;
+                        break;
+
+                    }
+                }
+
+                if(Top)
+                return rule;
+            }
+
+            throw new Exception();
+
         }
 
     }
