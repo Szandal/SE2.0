@@ -8,14 +8,15 @@ namespace SE
 {
     class Rule
     {
-        private string conclusion;
-        private List<string> evidence;
+        private string Conclusion;
+        private List<string> Evidence;
 
-        public Rule(string conclusion, List<string> evidence)
+        public Rule(string Conclusion, List<string> Evidence)
         {
-            this.conclusion = conclusion;
-            this.evidence = evidence;
+            this.Conclusion = Conclusion;
+            this.Evidence = Evidence;
         }
+
         public int NumberOfEvidences()
         {
             return Evidence.Count();

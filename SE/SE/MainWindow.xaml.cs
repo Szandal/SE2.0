@@ -33,7 +33,9 @@ namespace SE
             InitializeComponent();
         }
 
-
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Rule.Text
+        }
     }
 }
