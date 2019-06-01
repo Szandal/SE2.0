@@ -10,6 +10,5 @@ namespace SE
     {
         private LinkedList<Rule> ListOfRules;
         private LinkedList<string> ListOffacts;
-        //private 
     }
 }
