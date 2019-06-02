@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Exceptions\WrongFact.cs" />
+    <Compile Include="Exceptions\WrongRule.cs" />
     <Compile Include="ExplanatoryModule.cs" />
     <Compile Include="KnowledgeAcquisitionModule.cs" />
     <Compile Include="Rule.cs" />
@@ -100,5 +102,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

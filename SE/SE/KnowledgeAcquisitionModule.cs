@@ -28,13 +28,13 @@ namespace SE
             return null;
         }
 
-        public void RemoveRule()
+        public void RemoveRule(Rule Rule , List<Rule> ListOfRules)
         {
-
+            ListOfRules.Remove(Rule);
         }
-        public void RemoveFact()
+        public void RemoveFact(string Fact, LinkedList<string> ListOfFacts)
         {
-
+            ListOfFacts.Remove(Fact);
         }
 
         private bool CheckRule(string rule)

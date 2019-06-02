@@ -35,8 +35,6 @@ namespace SE
         }
 
 
-                  
-
         private Rule FreshnessStrategy(List<Rule> ListOfRules)
         {
             return ListOfRules.Last();
