@@ -24,8 +24,8 @@ namespace SE
 
         public bool BackwardsInference(string hypothesis, KnowledgeBaseModule KnowledgeBase)
         {
-            List<Rule> LocalRuleList = new List<Rule>();  //niewidzieć czemu usówa liste ze wszystkich rekurencji
-            LocalRuleList = KnowledgeBase.GetRules();
+            List<Rule> LocalRuleList = new List<Rule>(KnowledgeBase.GetRules());  
+
             while (!KnowledgeBase.GetFacts().Contains(hypothesis))
             {
                 if (LocalRuleList.Count() == 0)

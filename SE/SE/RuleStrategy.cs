@@ -37,7 +37,10 @@ namespace SE
 
         private Rule FreshnessStrategy(List<Rule> ListOfRules)
         {
+            if(ListOfRules.Count()>0)
             return ListOfRules.Last();
+
+            throw new Exception("Brak reguł");
         }
 
         private Rule StrategyOfSpecificity(List<Rule> ListOfRules)
