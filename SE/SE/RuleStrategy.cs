@@ -21,6 +21,22 @@ namespace SE
             }
         }
 
+        public Rule GetRule(string Strategy, List<Rule> ListOfRules, string hypothesis)
+        {
+            switch (Strategy)
+            {
+                case "FreshnessStrategy":
+                    return FreshnessStrategy(ListOfRules.Where(x => x.GetConclusion() == hypothesis).ToList());
+                case "StrategyOfSpecificity":
+                    return StrategyOfSpecificity(ListOfRules.Where(x => x.GetConclusion() == hypothesis).ToList());
+                default:
+                    throw new Exception();
+            }
+        }
+
+
+                  
+
         private Rule FreshnessStrategy(List<Rule> ListOfRules)
         {
             return ListOfRules.Last();
@@ -29,7 +45,6 @@ namespace SE
         private Rule StrategyOfSpecificity(List<Rule> ListOfRules)
         {
             bool Top;
-
             foreach (var rule in ListOfRules)
             {
                 Top = true;

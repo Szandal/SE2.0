@@ -13,10 +13,15 @@ namespace SE
         {
             RulesStrategy = new RulesStrategy();
         }
+
+
+
         public LinkedList<string> ForwardInference(KnowledgeBaseModule KnowledgeBase)
         {
             return KnowledgeBase.GetFacts();
         }
+
+
         public bool BackwardsInference(string hypothesis, KnowledgeBaseModule KnowledgeBase)
         {
             List<Rule> LocalRuleList = new List<Rule>();  //niewidzieć czemu usówa liste ze wszystkich rekurencji
@@ -71,4 +76,4 @@ namespace SE
             return false;
         }
     }
-}
+} 
