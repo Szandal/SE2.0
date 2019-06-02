@@ -112,36 +112,6 @@ namespace SE
         {
             RulesStrategy.SetActiveStrategy(NewStrategy);
         }
-        //private bool CheckRuleBackwards(Rule Rule, string hypothesis, KnowledgeBaseModule KnowledgeBase)
-        //{
-        //    int numberOfCheckedEvidence = 0;
-        //    if (!Rule.GetConclusion().Equals(hypothesis))
-        //    {
-        //        return false;    
-        //    }
-        //    foreach (string fact in Rule.GetEvidence())
-        //    {
-        //        if (KnowledgeBase.GetFacts().Contains(fact))
-        //        {
-        //            numberOfCheckedEvidence++;
-        //        }
-        //        else
-        //        {
-        //            if (BackwardsInference(fact, KnowledgeBase))
-        //            {
-        //                numberOfCheckedEvidence++;
-        //            }
-        //            else
-        //            {
-        //                return false;
-        //            }
-        //        }
-        //    }
-        //    if (numberOfCheckedEvidence == Rule.NumberOfEvidences())
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
+
     }
 } 

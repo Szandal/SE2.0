@@ -36,7 +36,6 @@ namespace SE
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("B+C=A"));
@@ -44,16 +43,13 @@ namespace SE
                 KnowledgeBaseModule.AddFact("C");
                 InferenceModule.SetActiveStrategy("FreshnessStrategy");
 
-                RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
-
+                //RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
+                RuleBox.Text = InferenceModule.ForwardInference(KnowledgeBaseModule).Last();
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
-   
-
-         
         }
     }
 }
