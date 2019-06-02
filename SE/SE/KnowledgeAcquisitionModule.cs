@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SE.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace SE
             if (rule.IndexOf('=') == -1 || rule.IndexOf('=') != rule.LastIndexOf('='))
             {
                 //zrobić własne wyjątki
-                throw new Exception("zła zasada");
+                throw new WrongRule("zła zasada");
             }
             string []fakts = rule.Split(new char[]{'=', '+' });
             foreach(string fakt in fakts)
@@ -50,7 +51,7 @@ namespace SE
                 if (!CheckFact(fakt))
                 {
                     //zrobić własne wyjątki
-                    throw new Exception("zła zasada");
+                    throw new WrongRule("zła zasada");
                 }
             }
             return true;
@@ -61,7 +62,7 @@ namespace SE
             MatchCollection match = rx.Matches(fakt);
             if (match.Count != 1)
             {
-                throw new System.Exception("zły fakt");
+                throw new WrongFact("zły fakt");
             }
             return true;
         }

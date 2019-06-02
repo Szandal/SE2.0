@@ -8,7 +8,7 @@ namespace SE.Exceptions
 {
     class WrongFact : Exception
     {
-       public WrongFact() : base()
+       public WrongFact(string mess) : base(mess)
         {
         
 

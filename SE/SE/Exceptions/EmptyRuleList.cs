@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SE.Exceptions
 {
-    class WrongRule : Exception
+    class EmptyRuleList : Exception
     {
-
-        public WrongRule(string mess) : base(mess)
+        public EmptyRuleList(string mess) : base(mess)
         {
 
         }

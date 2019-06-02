@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SE.Exceptions
 {
-    class WrongRule : Exception
+    class WrongStrategy :Exception 
     {
 
-        public WrongRule(string mess) : base(mess)
+        public WrongStrategy (string mess) : base(mess)
         {
 
         }
