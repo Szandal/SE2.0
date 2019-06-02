@@ -22,7 +22,7 @@ namespace SE
         }
         public void AddFact(string fact)
         {
-            ListOfFacts.AddFirst(fact);
+            ListOfFacts.AddLast(fact);
         }
         public LinkedList<string> GetFacts()
         {
