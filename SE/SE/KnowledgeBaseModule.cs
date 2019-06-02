@@ -8,18 +8,29 @@ namespace SE
 {
     class KnowledgeBaseModule
     {
-        private LinkedList<Rule> ListOfRules;
+        private List<Rule> ListOfRules;
         private LinkedList<string> ListOfFacts;
 
         public KnowledgeBaseModule()
         {
-            ListOfRules = new LinkedList<Rule>();
+            ListOfRules = new List<Rule>();
             ListOfFacts = new LinkedList<string>();
         }
         public void AddRule(Rule Rule)
         {
-            ListOfRules.AddLast(Rule);
-
+            ListOfRules.Add(Rule);
+        }
+        public void AddFact(string fact)
+        {
+            ListOfFacts.AddFirst(fact);
+        }
+        public LinkedList<string> GetFacts()
+        {
+            return ListOfFacts;
+        }
+        public List<Rule> GetRules()
+        {
+            return ListOfRules;
         }
 
     }

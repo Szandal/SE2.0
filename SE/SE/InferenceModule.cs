@@ -8,12 +8,69 @@ namespace SE
 {
     class InferenceModule
     {
-        public List<string> ForwardInference(KnowledgeBaseModule knowledgeBase)
+        RulesStrategy RulesStrategy;
+        public InferenceModule()
         {
-            return null;
+            RulesStrategy = new RulesStrategy();
         }
-        public bool BackwardsInference(string hypothesis, KnowledgeBaseModule knowledgeBase)
+        public LinkedList<string> ForwardInference(KnowledgeBaseModule KnowledgeBase)
         {
+
+            return KnowledgeBase.GetFacts();
+        }
+        public bool BackwardsInference(string hypothesis, KnowledgeBaseModule KnowledgeBase)
+        {
+            RulesStrategy RulesStrategy = new RulesStrategy();
+            List<Rule> LocalRuleList = new List<Rule>();  //niewidzieć czemu usówa liste ze wszystkich rekurencji
+            LocalRuleList = KnowledgeBase.GetRules();
+            while (!KnowledgeBase.GetFacts().Contains(hypothesis))
+            {
+                if (LocalRuleList.Count() == 0)
+                {
+                    return false;
+                }
+                Rule Rule = RulesStrategy.GetRule("FreshnessStrategy", LocalRuleList);
+                if (CheckRuleBackwards(Rule, hypothesis, KnowledgeBase))
+                {
+                    KnowledgeBase.AddFact(hypothesis);
+                }
+                else
+                {
+                    LocalRuleList.RemoveAt(LocalRuleList.IndexOf(Rule));
+                }
+                
+            }
+            return true;
+        }
+        private bool CheckRuleBackwards(Rule Rule, string hypothesis, KnowledgeBaseModule KnowledgeBase)
+        {
+            int numberOfCheckedEvidence = 0;
+            if (!Rule.GetConclusion().Equals(hypothesis))
+            {
+                return false;    
+            }
+            foreach (string fact in Rule.GetEvidence())
+            {
+                if (KnowledgeBase.GetFacts().Contains(fact))
+                {
+                    numberOfCheckedEvidence++;
+                }
+                else
+                {
+                    if (BackwardsInference(fact, KnowledgeBase))
+                    {
+                        numberOfCheckedEvidence++;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            if (numberOfCheckedEvidence == Rule.NumberOfEvidences())
+            {
+                return true;
+            }
             return false;
         }
     }

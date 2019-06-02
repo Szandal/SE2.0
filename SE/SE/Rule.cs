@@ -21,5 +21,16 @@ namespace SE
         {
             return Evidence.Count();
         }
+
+        public string GetConclusion()
+        {
+            return Conclusion;
+        }
+
+        public List<string> GetEvidence()
+        {
+            return Evidence;
+        }
+
     }
 }

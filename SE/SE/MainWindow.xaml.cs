@@ -39,7 +39,10 @@ namespace SE
 
             try
             {
-                KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(Rule.Text));
+                KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("B+C=A"));
+                KnowledgeBaseModule.AddFact("B");
+                //KnowledgeBaseModule.AddFact("C");
+                RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
 
             }
             catch (Exception ex)
