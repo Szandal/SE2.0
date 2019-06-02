@@ -52,6 +52,7 @@ namespace SE
                     {
                         KnowledgeBase.AddFact(hypothesis);
                     }
+                    
                 }
             }
             return true;

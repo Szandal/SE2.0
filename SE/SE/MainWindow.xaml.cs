@@ -41,7 +41,7 @@ namespace SE
             {
                 KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("B+C=A"));
                 KnowledgeBaseModule.AddFact("B");
-                //KnowledgeBaseModule.AddFact("C");
+                KnowledgeBaseModule.AddFact("C");
                 RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
 
             }
