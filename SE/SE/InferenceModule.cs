@@ -32,18 +32,43 @@ namespace SE
                 {
                     return false;
                 }
-                Rule Rule = RulesStrategy.GetRule("FreshnessStrategy", LocalRuleList);
-                if (CheckRuleBackwards(Rule, hypothesis, KnowledgeBase))
+                Rule Rule = RulesStrategy.GetRule("FreshnessStrategy", LocalRuleList, hypothesis);
+                if (RuleCanBeUsed(Rule, KnowledgeBase))
                 {
                     KnowledgeBase.AddFact(hypothesis);
                 }
                 else
                 {
-                    LocalRuleList.RemoveAt(LocalRuleList.IndexOf(Rule));
+                    List<bool> ListOfEvidenceCanBeUsed = new List<bool>();
+                    foreach(string evidence in Rule.GetEvidence())
+                    {
+                        ListOfEvidenceCanBeUsed.Add(BackwardsInference(evidence, KnowledgeBase));
+                    }
+                    if (ListOfEvidenceCanBeUsed.Contains(false))
+                    {
+                        LocalRuleList.Remove(Rule);
+                    }
+                    else
+                    {
+                        KnowledgeBase.AddFact(hypothesis);
+                    }
                 }
             }
             return true;
         }
+
+        private bool RuleCanBeUsed(Rule Rule, KnowledgeBaseModule knowledgeBase)
+        {
+            foreach(string evidence in Rule.GetEvidence())
+            {
+                if(!knowledgeBase.GetFacts().Contains(evidence))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private bool CheckRuleBackwards(Rule Rule, string hypothesis, KnowledgeBaseModule KnowledgeBase)
         {
             int numberOfCheckedEvidence = 0;

@@ -44,8 +44,6 @@ namespace SE
                 //zrobić własne wyjątki
                 throw new Exception("zła zasada");
             }
-
-           
             string []fakts = rule.Split(new char[]{'=', '+' });
             foreach(string fakt in fakts)
             {
