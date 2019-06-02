@@ -21,10 +21,10 @@ namespace SE
             }
             return null;
         }
-        public string AddFact(string fakt)
+        public string AddFact(string fact)
         {
-            if (CheckFact(fakt))
-                return fakt;
+            if (CheckFact(fact))
+                return fact;
             return null;
         }
 
@@ -41,6 +41,7 @@ namespace SE
         {
             if (rule.IndexOf('=') == -1 || rule.IndexOf('=') != rule.LastIndexOf('='))
             {
+                //zrobić własne wyjątki
                 throw new Exception("zła zasada");
             }
 
@@ -50,6 +51,7 @@ namespace SE
             {
                 if (!CheckFact(fakt))
                 {
+                    //zrobić własne wyjątki
                     throw new Exception("zła zasada");
                 }
             }

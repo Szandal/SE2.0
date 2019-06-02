@@ -15,12 +15,10 @@ namespace SE
         }
         public LinkedList<string> ForwardInference(KnowledgeBaseModule KnowledgeBase)
         {
-
             return KnowledgeBase.GetFacts();
         }
         public bool BackwardsInference(string hypothesis, KnowledgeBaseModule KnowledgeBase)
         {
-            RulesStrategy RulesStrategy = new RulesStrategy();
             List<Rule> LocalRuleList = new List<Rule>();  //niewidzieć czemu usówa liste ze wszystkich rekurencji
             LocalRuleList = KnowledgeBase.GetRules();
             while (!KnowledgeBase.GetFacts().Contains(hypothesis))
@@ -38,7 +36,6 @@ namespace SE
                 {
                     LocalRuleList.RemoveAt(LocalRuleList.IndexOf(Rule));
                 }
-                
             }
             return true;
         }
