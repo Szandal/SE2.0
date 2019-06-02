@@ -23,7 +23,7 @@ namespace SE
             int numberOfNotUsed = 0;
             while(RulesToUse!=NotUsed)
             {
-                Rule Rule = RulesStrategy.GetRule("FreshnessStrategy", RulesToUse);
+                Rule Rule = RulesStrategy.GetRule(RulesToUse);
                 if (RuleCanBeUsed(Rule, KnowledgeBase.GetFacts()) && !KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
                 {
                     KnowledgeBase.AddFact(Rule.GetConclusion());
@@ -65,7 +65,7 @@ namespace SE
                 Rule Rule;
                 try
                 {
-                    Rule = RulesStrategy.GetRule("FreshnessStrategy", LocalRuleList, hypothesis);
+                    Rule = RulesStrategy.GetRule(LocalRuleList, hypothesis);
                 }
                 catch
                 {
@@ -108,7 +108,10 @@ namespace SE
             }
             return true;
         }
-
+        public void SetActiveStrategy(string NewStrategy)
+        {
+            RulesStrategy.SetActiveStrategy(NewStrategy);
+        }
         //private bool CheckRuleBackwards(Rule Rule, string hypothesis, KnowledgeBaseModule KnowledgeBase)
         //{
         //    int numberOfCheckedEvidence = 0;

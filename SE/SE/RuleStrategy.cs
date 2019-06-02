@@ -12,9 +12,9 @@ namespace SE
 
 
         private string ActiveStrategy = "";
-        public Rule GetRule(string Strategy, List<Rule> ListOfRules)
+        public Rule GetRule( List<Rule> ListOfRules)
         {
-            switch (Strategy)
+            switch (ActiveStrategy)
             {
                 case "FreshnessStrategy":
                     return FreshnessStrategy(ListOfRules);
