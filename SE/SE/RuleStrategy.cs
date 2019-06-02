@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SE.Exceptions;
 
 namespace SE
 {
     class RulesStrategy
     {
+
+
+        private string ActiveStrategy = "";
         public Rule GetRule(string Strategy, List<Rule> ListOfRules)
         {
             switch (Strategy)
@@ -17,20 +21,20 @@ namespace SE
                 case "StrategyOfSpecificity":
                     return StrategyOfSpecificity(ListOfRules);
                 default:
-                    throw new Exception();
+                    throw new WrongStrategy("Aktywna strategia :" + ActiveStrategy);
             }
         }
 
-        public Rule GetRule(string Strategy, List<Rule> ListOfRules, string hypothesis)
+        public Rule GetRule(List<Rule> ListOfRules, string hypothesis)
         {
-            switch (Strategy)
+            switch (ActiveStrategy)
             {
                 case "FreshnessStrategy":
                     return FreshnessStrategy(ListOfRules.Where(x => x.GetConclusion() == hypothesis).ToList());
                 case "StrategyOfSpecificity":
                     return StrategyOfSpecificity(ListOfRules.Where(x => x.GetConclusion() == hypothesis).ToList());
                 default:
-                    throw new Exception();
+                    throw new WrongStrategy("Aktywna strategia :" +ActiveStrategy);
             }
         }
 
@@ -40,7 +44,7 @@ namespace SE
             if(ListOfRules.Count()>0)
             return ListOfRules.Last();
 
-            throw new Exception("Brak reguł");
+            throw new EmptyRuleList("Brak reguł");
         }
 
         private Rule StrategyOfSpecificity(List<Rule> ListOfRules)
@@ -64,9 +68,14 @@ namespace SE
                 return rule;
             }
 
-            throw new Exception();
+            throw new EmptyRuleList("Brak reguł");
 
         }
 
+        public void SetActiveStrategy(string NewStrategy)
+        {
+            ActiveStrategy = NewStrategy;
+        }
+        
     }
 }

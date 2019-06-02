@@ -9,6 +9,7 @@ namespace SE
     class InferenceModule
     {
         RulesStrategy RulesStrategy;
+        
         public InferenceModule()
         {
             RulesStrategy = new RulesStrategy();
@@ -32,7 +33,8 @@ namespace SE
                 {
                     return false;
                 }
-                Rule Rule = RulesStrategy.GetRule("FreshnessStrategy", LocalRuleList, hypothesis);
+                Rule Rule = RulesStrategy.GetRule(LocalRuleList, hypothesis);
+
                 if (RuleCanBeUsed(Rule, KnowledgeBase))
                 {
                     KnowledgeBase.AddFact(hypothesis);
@@ -100,6 +102,10 @@ namespace SE
                 return true;
             }
             return false;
+        }
+        public void SetActiveStrategy(string NewStrategy)
+        {
+            RulesStrategy.SetActiveStrategy(NewStrategy);
         }
     }
 } 

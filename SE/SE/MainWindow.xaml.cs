@@ -42,6 +42,7 @@ namespace SE
                 KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("B+C=A"));
                 KnowledgeBaseModule.AddFact("B");
                 KnowledgeBaseModule.AddFact("C");
+                InferenceModule.SetActiveStrategy("FreshnessStrategy");
                 RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
 
             }

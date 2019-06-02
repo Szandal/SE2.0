@@ -55,8 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Exceptions\EmptyRuleList.cs" />
     <Compile Include="Exceptions\WrongFact.cs" />
     <Compile Include="Exceptions\WrongRule.cs" />
+    <Compile Include="Exceptions\WrongStrategy.cs" />
     <Compile Include="ExplanatoryModule.cs" />
     <Compile Include="KnowledgeAcquisitionModule.cs" />
     <Compile Include="Rule.cs" />
