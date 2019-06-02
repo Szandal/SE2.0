@@ -18,6 +18,36 @@ namespace SE
 
         public LinkedList<string> ForwardInference(KnowledgeBaseModule KnowledgeBase)
         {
+            List<Rule> RulesToUse = new List<Rule>(KnowledgeBase.GetRules());
+            List<Rule> NotUsed = new List<Rule>();
+            int numberOfNotUsed = 0;
+            while(RulesToUse!=NotUsed)
+            {
+                Rule Rule = RulesStrategy.GetRule("FreshnessStrategy", RulesToUse);
+                if (RuleCanBeUsed(Rule, KnowledgeBase.GetFacts()) && !KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
+                {
+                    KnowledgeBase.AddFact(Rule.GetConclusion());
+                }
+                else
+                {
+                    if (!KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
+                    {
+                        NotUsed.Add(Rule);
+                    }
+                }
+                RulesToUse.Remove(Rule);
+                if(RulesToUse.Count() == 0)
+                {
+                    if (NotUsed.Count() == numberOfNotUsed)
+                    {
+                        break;
+                    }
+                    RulesToUse = NotUsed.ToList();
+                    //RulesToUse.AddRange(NotUsed);
+                    numberOfNotUsed = NotUsed.Count();
+                    NotUsed.Clear();
+                }
+            }
             return KnowledgeBase.GetFacts();
         }
 
@@ -32,8 +62,17 @@ namespace SE
                 {
                     return false;
                 }
-                Rule Rule = RulesStrategy.GetRule("FreshnessStrategy", LocalRuleList, hypothesis);
-                if (RuleCanBeUsed(Rule, KnowledgeBase))
+                Rule Rule;
+                try
+                {
+                    Rule = RulesStrategy.GetRule("FreshnessStrategy", LocalRuleList, hypothesis);
+                }
+                catch
+                {
+                    return false;
+                }
+                
+                if (RuleCanBeUsed(Rule, KnowledgeBase.GetFacts()))
                 {
                     KnowledgeBase.AddFact(hypothesis);
                 }
@@ -58,11 +97,11 @@ namespace SE
             return true;
         }
 
-        private bool RuleCanBeUsed(Rule Rule, KnowledgeBaseModule knowledgeBase)
+        private bool RuleCanBeUsed(Rule Rule, LinkedList<string> Facts)
         {
             foreach(string evidence in Rule.GetEvidence())
             {
-                if(!knowledgeBase.GetFacts().Contains(evidence))
+                if(!Facts.Contains(evidence))
                 {
                     return false;
                 }
@@ -70,36 +109,36 @@ namespace SE
             return true;
         }
 
-        private bool CheckRuleBackwards(Rule Rule, string hypothesis, KnowledgeBaseModule KnowledgeBase)
-        {
-            int numberOfCheckedEvidence = 0;
-            if (!Rule.GetConclusion().Equals(hypothesis))
-            {
-                return false;    
-            }
-            foreach (string fact in Rule.GetEvidence())
-            {
-                if (KnowledgeBase.GetFacts().Contains(fact))
-                {
-                    numberOfCheckedEvidence++;
-                }
-                else
-                {
-                    if (BackwardsInference(fact, KnowledgeBase))
-                    {
-                        numberOfCheckedEvidence++;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            if (numberOfCheckedEvidence == Rule.NumberOfEvidences())
-            {
-                return true;
-            }
-            return false;
-        }
+        //private bool CheckRuleBackwards(Rule Rule, string hypothesis, KnowledgeBaseModule KnowledgeBase)
+        //{
+        //    int numberOfCheckedEvidence = 0;
+        //    if (!Rule.GetConclusion().Equals(hypothesis))
+        //    {
+        //        return false;    
+        //    }
+        //    foreach (string fact in Rule.GetEvidence())
+        //    {
+        //        if (KnowledgeBase.GetFacts().Contains(fact))
+        //        {
+        //            numberOfCheckedEvidence++;
+        //        }
+        //        else
+        //        {
+        //            if (BackwardsInference(fact, KnowledgeBase))
+        //            {
+        //                numberOfCheckedEvidence++;
+        //            }
+        //            else
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    if (numberOfCheckedEvidence == Rule.NumberOfEvidences())
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
     }
 } 
