@@ -32,7 +32,5 @@ namespace SE
         {
             return ListOfRules;
         }
-
-      
     }
 }
