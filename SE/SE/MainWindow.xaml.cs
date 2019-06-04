@@ -34,24 +34,38 @@ namespace SE
         public MainWindow()
         {
             InitializeComponent();
+            InitializeKnowledgeBase();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void InitializeKnowledgeBase()
         {
-            try
+            string facts = "ABCDEFGK";
+            foreach(char fact in facts)
             {
-                KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("B+C=A"));
-                KnowledgeBaseModule.AddFact("B");
-                KnowledgeBaseModule.AddFact("C");
-                InferenceModule.SetActiveStrategy("FreshnessStrategy");
-
-                //RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
-                RuleBox.Text = InferenceModule.ForwardInference(KnowledgeBaseModule).Last();
+                KnowledgeBaseModule.AddFact(fact.ToString());
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A+B+C=D"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A+B=H"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("H+C=Z"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("G+S=R"));
         }
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("B+C=A"));
+        //        KnowledgeBaseModule.AddFact("B");
+        //        KnowledgeBaseModule.AddFact("C");
+        //        InferenceModule.SetActiveStrategy("FreshnessStrategy");
+
+        //        //RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
+        //        RuleBox.Text = InferenceModule.ForwardInference(KnowledgeBaseModule).Last();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine(ex.Message);
+        //    }
+        //}
     }
 }

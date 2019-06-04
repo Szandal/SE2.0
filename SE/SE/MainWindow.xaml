@@ -14,8 +14,25 @@
         mc:Ignorable="d"
         Title="MainWindow">
     <Grid>
-        <TextBox x:Name="RuleBox" HorizontalAlignment="Left" Height="23" Margin="84,71,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="315,71,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Name="Forward" Margin="5,5,5,5" Grid.Row="0" Content="W Przód" Width="Auto"/>
+            <Button Name="Backward" Margin="5,5,5,5" Grid.Row="0" Content="W Tył" Width="Auto"/>
+            <Button Name="AddRule" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj regułe" Width="Auto"/>
+            <Button Name="AddFact" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj fakt" Width="Auto"/>
+            <Button Name="DelRule" Margin="5,5,5,5" Grid.Row="0" Content="Usuń regułe" Width="Auto"/>
+            <Button Name="DelFact" Margin="5,5,5,5" Grid.Row="0" Content="Usuń fakt" Width="Auto"/>
+            <Button Name="ShowRules" Margin="5,5,5,5" Grid.Row="0" Content="Pokaż reguły" Width="Auto"/>
+            <Button Name="ShowFacts" Margin="5,5,5,5" Grid.Row="0" Content="Pokaż fakty" Width="Auto"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Name="DataPlace"/>
+
+        
+        
+        
 
     </Grid>
 </Controls:MetroWindow>
