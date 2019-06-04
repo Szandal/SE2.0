@@ -63,6 +63,10 @@ namespace SE
             KnowledgeBaseModule.AddFact(newFact);
         }
 
-
+        private async void OnBackwadAsync(object sender, RoutedEventArgs e)
+        {
+            string hypotes = await this.ShowInputAsync("Pdaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
+            //Cała reszta wnioskowania
+        }
     }
 }

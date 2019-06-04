@@ -23,7 +23,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
                         <Button Name="Forward" Margin="5,5,5,5" Content="W Przód" Width="Auto"/>
-                        <Button Name="Backward" Margin="5,5,5,5" Content="W Tył" Width="Auto"/>
+                        <Button Name="Backward" Margin="5,5,5,5" Content="W Tył" Width="Auto" Click="OnBackwadAsync"/>
                     </StackPanel>
                     <!--Coś na dane???-->
                 </Grid>
