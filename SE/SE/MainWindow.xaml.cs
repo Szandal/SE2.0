@@ -34,8 +34,10 @@ namespace SE
         public MainWindow()
         {
             InitializeComponent();
+            RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
             InitializeKnowledgeBase();
         }
+
 
         private void InitializeKnowledgeBase()
         {

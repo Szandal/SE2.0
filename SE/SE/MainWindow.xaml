@@ -42,8 +42,7 @@
                     <ListView Name="RuleList" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="L.P." DisplayMemberBinding="{Binding LP}"/>
-                                <GridViewColumn Header="Reguła" DisplayMemberBinding="{Binding Reguła}"/>
+                                <GridViewColumn Header="Reguła" DisplayMemberBinding="{Binding Rule}"/>
                                 <GridViewColumn Header="Usuń"/>
                             </GridView>
                         </ListView.View>
@@ -51,7 +50,6 @@
                     <ListView Name="FactList" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="L.P." DisplayMemberBinding="{Binding LP}"/>
                                 <GridViewColumn Header="Fakt" DisplayMemberBinding="{Binding Fakt}"/>
                                 <GridViewColumn Header="Usuń"/>
                             </GridView>
