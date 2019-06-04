@@ -22,7 +22,7 @@
                         <ColumnDefinition Width="6*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <Button Name="Forward" Margin="5,5,5,5" Content="W Przód" Width="Auto"/>
+                        <Button Name="Forward" Margin="5,5,5,5" Content="W Przód" Width="Auto" Click="Forward_Click" />
                         <Button Name="Backward" Margin="5,5,5,5" Content="W Tył" Width="Auto"/>
                     </StackPanel>
                     <!--Coś na dane???-->

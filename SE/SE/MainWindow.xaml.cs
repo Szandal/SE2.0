@@ -50,6 +50,8 @@ namespace SE
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A+B=H"));
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("H+C=Z"));
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("G+S=R"));
+
+ 
         }
 
         private async void OnAddRuleAsync(object sender, RoutedEventArgs e)
@@ -57,6 +59,24 @@ namespace SE
             string newRule = await this.ShowInputAsync("as","Mes",null);
             KnowledgeAcquisitionModule.AddRule(newRule);
         }
+        public ProgressDialogController dialog;
+        private async void Forward_Click(object sender, RoutedEventArgs e)
+        {
+     
 
+            dialog = await this.ShowProgressAsync("Please wait...", "<head><body><Inner> welcome </head> </Inner> <Outer> Bye</Outer></body></head>", false,null);
+
+            dialog.SetIndeterminate();
+            await Task.Run(() =>
+            {
+
+
+System.Threading.Thread.Sleep(2000);
+
+            });
+        await    dialog.CloseAsync();
+        }
+
+       
     }
 }
