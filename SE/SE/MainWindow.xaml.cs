@@ -52,22 +52,11 @@ namespace SE
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("G+S=R"));
         }
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("B+C=A"));
-        //        KnowledgeBaseModule.AddFact("B");
-        //        KnowledgeBaseModule.AddFact("C");
-        //        InferenceModule.SetActiveStrategy("FreshnessStrategy");
+        private async void OnAddRuleAsync(object sender, RoutedEventArgs e)
+        {
+            string newRule = await this.ShowInputAsync("as","Mes",null);
+            KnowledgeAcquisitionModule.AddRule(newRule);
+        }
 
-        //        //RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
-        //        RuleBox.Text = InferenceModule.ForwardInference(KnowledgeBaseModule).Last();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //    }
-        //}
     }
 }

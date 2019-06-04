@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace SE
 {
@@ -54,26 +55,8 @@ namespace SE
 
         private void OnAddRule(object sender, RoutedEventArgs e)
         {
-            InputBox ip = new InputBox("Huj");
-            Console.Write(ip.GetText())
+            //await this.ShowMessageAsync("This is the title", "Some message");
         }
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("B+C=A"));
-        //        KnowledgeBaseModule.AddFact("B");
-        //        KnowledgeBaseModule.AddFact("C");
-        //        InferenceModule.SetActiveStrategy("FreshnessStrategy");
-
-        //        //RuleBox.Text = InferenceModule.BackwardsInference("A", KnowledgeBaseModule) ? "tak" : "Nie";
-        //        RuleBox.Text = InferenceModule.ForwardInference(KnowledgeBaseModule).Last();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //    }
-        //}
     }
 }
