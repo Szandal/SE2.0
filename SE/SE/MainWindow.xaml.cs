@@ -54,9 +54,15 @@ namespace SE
 
         private async void OnAddRuleAsync(object sender, RoutedEventArgs e)
         {
-            string newRule = await this.ShowInputAsync("as","Mes",null);
-            KnowledgeAcquisitionModule.AddRule(newRule);
+            string newRule = await this.ShowInputAsync("Dodaj Regułę","Wpisz regułę (np. \"A+B=C\")",null);
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(newRule));
         }
+        private async void OnAddFactAsync(object sender, RoutedEventArgs e)
+        {
+            string newFact = await this.ShowInputAsync("Dodaj Fakt", "Wpisz Fakt (np. \"A\",\"Kaszel\" itp.)", null);
+            KnowledgeBaseModule.AddFact(newFact);
+        }
+
 
     }
 }

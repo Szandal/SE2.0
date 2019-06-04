@@ -37,7 +37,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
                         <Button Name="AddRule" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj regułe" Width="Auto" Click="OnAddRuleAsync"/>
-                        <Button Name="AddFact" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj fakt" Width="Auto"/>
+                        <Button Name="AddFact" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj fakt" Width="Auto" Click="OnAddFactAsync"/>
                     </StackPanel>
                     <ListView Name="RuleList" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1">
                         <ListView.View>
