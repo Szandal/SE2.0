@@ -69,9 +69,16 @@
     <Compile Include="Exceptions\WrongRule.cs" />
     <Compile Include="Exceptions\WrongStrategy.cs" />
     <Compile Include="ExplanatoryModule.cs" />
+    <Compile Include="InputBox.xaml.cs">
+      <DependentUpon>InputBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KnowledgeAcquisitionModule.cs" />
     <Compile Include="Rule.cs" />
     <Compile Include="RuleStrategy.cs" />
+    <Page Include="InputBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
