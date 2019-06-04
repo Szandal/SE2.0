@@ -36,8 +36,16 @@ namespace SE
             InitializeComponent();
             RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
             InitializeKnowledgeBase();
+            PlaySound();
         }
 
+        private void PlaySound()
+        {
+            System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer();
+            soundPlayer.SoundLocation = "1.wav";
+            soundPlayer.Load();
+            soundPlayer.Play();
+        }
 
         private void InitializeKnowledgeBase()
         {
