@@ -14,25 +14,51 @@
         mc:Ignorable="d"
         Title="MainWindow">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="7*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Name="Forward" Margin="5,5,5,5" Grid.Row="0" Content="W Przód" Width="Auto"/>
-            <Button Name="Backward" Margin="5,5,5,5" Grid.Row="0" Content="W Tył" Width="Auto"/>
-            <Button Name="AddRule" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj regułe" Width="Auto"/>
-            <Button Name="AddFact" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj fakt" Width="Auto"/>
-            <Button Name="DelRule" Margin="5,5,5,5" Grid.Row="0" Content="Usuń regułe" Width="Auto"/>
-            <Button Name="DelFact" Margin="5,5,5,5" Grid.Row="0" Content="Usuń fakt" Width="Auto"/>
-            <Button Name="ShowRules" Margin="5,5,5,5" Grid.Row="0" Content="Pokaż reguły" Width="Auto"/>
-            <Button Name="ShowFacts" Margin="5,5,5,5" Grid.Row="0" Content="Pokaż fakty" Width="Auto"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Name="DataPlace"/>
-
-        
-        
-        
-
+        <TabControl>
+            <TabItem Header="Wnioskowanie">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Button Name="Forward" Margin="5,5,5,5" Content="W Przód" Width="Auto"/>
+                        <Button Name="Backward" Margin="5,5,5,5" Content="W Tył" Width="Auto"/>
+                    </StackPanel>
+                    <!--Coś na dane???-->
+                </Grid>
+            </TabItem>
+            <TabItem Header="Dane">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Button Name="AddRule" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj regułe" Width="Auto"/>
+                        <Button Name="AddFact" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj fakt" Width="Auto"/>
+                    </StackPanel>
+                    <ListView Name="RuleList" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="L.P." DisplayMemberBinding="{Binding LP}"/>
+                                <GridViewColumn Header="Reguła" DisplayMemberBinding="{Binding Reguła}"/>
+                                <GridViewColumn Header="Usuń"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="FactList" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="L.P." DisplayMemberBinding="{Binding LP}"/>
+                                <GridViewColumn Header="Fakt" DisplayMemberBinding="{Binding Fakt}"/>
+                                <GridViewColumn Header="Usuń"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Controls:MetroWindow>
