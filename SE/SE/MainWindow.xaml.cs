@@ -36,8 +36,16 @@ namespace SE
             InitializeComponent();
             RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
             InitializeKnowledgeBase();
+            PlaySound();
         }
 
+        private void PlaySound()
+        {
+            System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer();
+            soundPlayer.SoundLocation = "1.wav";
+            soundPlayer.Load();
+            soundPlayer.Play();
+        }
 
         private void InitializeKnowledgeBase()
         {
@@ -50,14 +58,17 @@ namespace SE
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A+B=H"));
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("H+C=Z"));
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("G+S=R"));
-
- 
         }
 
         private async void OnAddRuleAsync(object sender, RoutedEventArgs e)
         {
-            string newRule = await this.ShowInputAsync("as","Mes",null);
-            KnowledgeAcquisitionModule.AddRule(newRule);
+            string newRule = await this.ShowInputAsync("Dodaj Regułę","Wpisz regułę (np. \"A+B=C\")",null);
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(newRule));
+        }
+        private async void OnAddFactAsync(object sender, RoutedEventArgs e)
+        {
+            string newFact = await this.ShowInputAsync("Dodaj Fakt", "Wpisz Fakt (np. \"A\",\"Kaszel\" itp.)", null);
+            KnowledgeBaseModule.AddFact(newFact);
         }
         public ProgressDialogController dialog;
         private async void Forward_Click(object sender, RoutedEventArgs e)
@@ -77,6 +88,10 @@ System.Threading.Thread.Sleep(2000);
         await    dialog.CloseAsync();
         }
 
-       
+        private async void OnBackwadAsync(object sender, RoutedEventArgs e)
+        {
+            string hypotes = await this.ShowInputAsync("Pdaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
+            //Cała reszta wnioskowania
+        }
     }
 }
