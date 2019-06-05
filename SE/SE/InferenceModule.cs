@@ -103,6 +103,8 @@ namespace SE
                     
                 }
             }
+
+            inferences.Add(new Inference("Hipoteza znajduje się w bazie faktów",KnowledgeBase.ToString()));
             return true;
         }
 

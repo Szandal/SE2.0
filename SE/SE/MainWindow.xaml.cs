@@ -138,14 +138,18 @@ namespace SE
 
         private async void Backward_Click(object sender, RoutedEventArgs e)
         {
+            Inference.Clear();
             string hypotes = await this.ShowInputAsync("Podaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
             if (hypotes == null || hypotes == ""||!KnowledgeAcquisitionModule.CheckFact(hypotes))
             {
 
-            
+                return;
 
             }   //Cała reszta wnioskowania
-       
+
+            InferenceModule.BackwardsInference(hypotes, KnowledgeBaseModule, Inference);
+            ResetUI();
+
         }
 
         private async void InferenceStrategyRadioButton(object sender, RoutedEventArgs e)
