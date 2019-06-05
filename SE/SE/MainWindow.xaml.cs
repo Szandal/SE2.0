@@ -144,6 +144,37 @@ namespace SE
         {
             InferenceModule.SetActiveStrategy((sender as RadioButton).Name);
         }
-        
+
+        private async void OnDelRuleAsync(object sender, RoutedEventArgs e)
+        {
+            int index = RuleList.SelectedIndex;
+            if (index != -1)
+            {
+                KnowledgeBaseModule.DelRule(index);
+                RuleList.ItemsSource = null;
+                RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error", "Drogi użytkowniku co ci mam niby usunąć?!");
+            }
+        }
+
+        private async void OnDelFactAsync(object sender, RoutedEventArgs e)
+        {
+            string fact;
+            try
+            {
+                fact = FactList.SelectedValue.ToString();
+            }
+            catch
+            {
+                await this.ShowMessageAsync("Error", "Drogi użytkowniku co ci mam niby usunąć?!");
+                return;
+            }
+            KnowledgeBaseModule.DelFact(fact);
+            FactList.ItemsSource = null;
+            FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
+        }
     }
 }

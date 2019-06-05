@@ -40,5 +40,15 @@ namespace SE
             var temp = string.Concat(ListOfFacts.ToArray());
             return temp;
         }
+
+        public void DelFact(string fact)
+        {
+            ListOfFacts.Remove(fact);
+        }
+
+        internal void DelRule(int index)
+        {
+            ListOfRules.RemoveAt(index);
+        }
     }
 }
