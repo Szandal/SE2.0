@@ -120,10 +120,14 @@
     <PackageReference Include="MahApps.Metro">
       <Version>1.6.5</Version>
     </PackageReference>
+    <PackageReference Include="WpfAnimatedGif">
+      <Version>1.4.18</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\0.jpg" />
+    <Resource Include="Images\cat.gif" />
     <Content Include="Music\1.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
