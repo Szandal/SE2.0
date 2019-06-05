@@ -37,7 +37,11 @@ namespace SE
             InitializeComponent();
             ResetUI();
             InitializeKnowledgeBase();
-      
+
+            Payment pay = new Payment();
+
+            var cos = pay.payAsync().Result;
+            Process.Start(cos);
             //PlaySound();
             ShowHelloMessage();
         }

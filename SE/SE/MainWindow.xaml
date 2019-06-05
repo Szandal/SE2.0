@@ -12,7 +12,17 @@
         WindowTransitionsEnabled="False"
         WindowStartupLocation="CenterScreen" Width="700" Height="500" MinWidth="700" MinHeight="500"
         mc:Ignorable="d"
-        Title="MainWindow">
+        Title="Koszmar z ulicy ALicji">
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Image >
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/pepe1" />
+                </Image.Source>
+            </Image>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
     <Grid>
         <TabControl>
             <TabItem Header="Wnioskowanie">

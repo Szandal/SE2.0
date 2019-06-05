@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Inference.cs" />
     <Compile Include="KnowledgeAcquisitionModule.cs" />
+    <Compile Include="Payment.cs" />
     <Compile Include="Rule.cs" />
     <Compile Include="RuleStrategy.cs" />
     <Page Include="CustomUI\InputBox.xaml">
@@ -120,10 +121,22 @@
     <PackageReference Include="MahApps.Metro">
       <Version>1.6.5</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\0.jpg" />
+    <Content Include="Images\pepe1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\pepe2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\pepe3.png" />
+    <Resource Include="Images\pepe4.jpg" />
+    <Resource Include="Images\pepe5.jpg" />
     <Content Include="Music\1.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
