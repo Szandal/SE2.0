@@ -50,6 +50,9 @@ namespace SE
         private Rule StrategyOfSpecificity(List<Rule> ListOfRules)
         {
             bool Top;
+
+            var item = ListOfRules.OrderByDescending(x => x.GetEvidence().Count()).First();
+            var biggest1 = ListOfRules.Aggregate((i1, i2) => i1.GetEvidence().Count() > i2.GetEvidence().Count() ? i1 : i2);
             foreach (var rule in ListOfRules)
             {
                 Top = true;

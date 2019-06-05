@@ -18,12 +18,16 @@
             <TabItem Header="Wnioskowanie">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <Button Name="Forward" Margin="5,5,5,5" Content="W Przód" Width="Auto" Click="Forward_Click" />
-                        <Button Name="Backward" Margin="5,5,5,5" Content="W Tył" Width="Auto" Click="OnBackwadAsync"/>
+                        <Button Name="Forward" Margin="5,5,5,5" Content="W Przód" Width="Auto" Click="Forward_Click" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button Name="Backward" Margin="5,5,5,5" Content="W Tył" Width="Auto" Click="OnBackwadAsync" HorizontalAlignment="Center"/>
+                        <Label>Wybierz strategie doboru reguł :</Label>
+                        <RadioButton GroupName="InferenceStrategy" Name="FreshnessStrategy" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top">Freshness Strategy</RadioButton>
+                        <RadioButton GroupName="InferenceStrategy" Name="StrategyOfSpecificity" HorizontalAlignment="Left" VerticalAlignment="Top" >Strategy Of Specificity</RadioButton>
+   
                     </StackPanel>
                     <ListView Name="InferenceSteps"   Grid.Column="1"  VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.View>

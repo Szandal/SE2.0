@@ -47,8 +47,8 @@ namespace SE
         {
             System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer();
             soundPlayer.SoundLocation = @"Music\1.wav";
-            soundPlayer.Load();
-            soundPlayer.Play();
+           // soundPlayer.Load();
+           // soundPlayer.Play();
         }
 
         private void InitializeKnowledgeBase()

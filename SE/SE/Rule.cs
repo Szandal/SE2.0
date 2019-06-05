@@ -10,6 +10,7 @@ namespace SE
     {
         private string Conclusion;
         private List<string> Evidence;
+       
 
         public Rule(string Conclusion, List<string> Evidence)
         {
