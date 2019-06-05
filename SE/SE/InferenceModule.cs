@@ -30,7 +30,6 @@ namespace SE
                 {
                     inferences.Add(new Inference( Rule.GetRule(), KnowledgeBase.ToString()));
                     KnowledgeBase.AddFact(Rule.GetConclusion());
-
                 }
                 else
                 {

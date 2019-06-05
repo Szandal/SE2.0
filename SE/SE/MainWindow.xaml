@@ -68,8 +68,7 @@
                     <ListView Name="FactList" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Fakt" DisplayMemberBinding="{Binding Fakt}"/>
-                                <GridViewColumn Header="Usuń"/>
+                                <GridViewColumn Header="ListOfFacts"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

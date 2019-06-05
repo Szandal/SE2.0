@@ -36,10 +36,9 @@ namespace SE
         {
             InitializeComponent();
             RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
+            FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
             InitializeKnowledgeBase();
-
             InferenceSteps.ItemsSource = Inference;
-
             //PlaySound();
             ShowHelloMessage();
         }
@@ -61,8 +60,8 @@ namespace SE
         {
             System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer();
             soundPlayer.SoundLocation = @"Music\1.wav";
-           // soundPlayer.Load();
-           // soundPlayer.Play();
+            soundPlayer.Load();
+            soundPlayer.Play();
         }
 
         private void InitializeKnowledgeBase()
@@ -88,6 +87,7 @@ namespace SE
                 return;
             }
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(newRule));
+            RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
         }
         private async void OnAddFactAsync(object sender, RoutedEventArgs e)
         {
@@ -97,6 +97,7 @@ namespace SE
                 return;
             }
             KnowledgeBaseModule.AddFact(newFact);
+            FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
         }
         public ProgressDialogController dialog;
         private async void Forward_Click(object sender, RoutedEventArgs e)
@@ -128,6 +129,10 @@ namespace SE
         private async void Backward_Click(object sender, RoutedEventArgs e)
         {
             string hypotes = await this.ShowInputAsync("Podaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
+            if (hypotes == null || hypotes == "")
+            {
+                return;
+            }
             //Cała reszta wnioskowania
         }
 
