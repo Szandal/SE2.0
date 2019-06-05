@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SE.Exceptions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,7 +57,7 @@ namespace SE
         }
 
 
-        public bool BackwardsInference(string hypothesis, KnowledgeBaseModule KnowledgeBase)
+        public bool BackwardsInference(string hypothesis, KnowledgeBaseModule KnowledgeBase, List<Inference> inferences)
         {
             List<Rule> LocalRuleList = new List<Rule>(KnowledgeBase.GetRules());  
 
@@ -64,7 +65,7 @@ namespace SE
             {
                 if (LocalRuleList.Count() == 0)
                 {
-                    return false;
+                    throw new UnsuccessfulInference("Nieudane wnioskowanie");
                 }
                 Rule Rule;
                 try
@@ -73,31 +74,37 @@ namespace SE
                 }
                 catch
                 {
-                    return false;
+                    throw new WrongRule("Nie znaleziono reguły dla hipotezy :" +hypothesis);
                 }
                 
                 if (RuleCanBeUsed(Rule, KnowledgeBase.GetFacts()))
                 {
                     KnowledgeBase.AddFact(hypothesis);
+                    inferences.Add(new Inference(Rule.GetRule(), KnowledgeBase.ToString()));
                 }
                 else
                 {
                     List<bool> ListOfEvidenceCanBeUsed = new List<bool>();
                     foreach(string evidence in Rule.GetEvidence())
                     {
-                        ListOfEvidenceCanBeUsed.Add(BackwardsInference(evidence, KnowledgeBase));
+                        ListOfEvidenceCanBeUsed.Add(BackwardsInference(evidence, KnowledgeBase,inferences));
                     }
                     if (ListOfEvidenceCanBeUsed.Contains(false))
                     {
+                        inferences.Add(new Inference(Rule.GetRule(), "-!-"));
                         LocalRuleList.Remove(Rule);
                     }
                     else
                     {
+                        inferences.Add(new Inference(Rule.GetRule(), "Not used"));
+
                         KnowledgeBase.AddFact(hypothesis);
                     }
                     
                 }
             }
+
+            inferences.Add(new Inference("Hipoteza znajduje się w bazie faktów",KnowledgeBase.ToString()));
             return true;
         }
 

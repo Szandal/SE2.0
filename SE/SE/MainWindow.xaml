@@ -32,9 +32,7 @@
                     <ListView Name="InferenceSteps"   Grid.Column="1"  VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Rules" Width="auto" DisplayMemberBinding="{Binding Rule}"> 
-                                </GridViewColumn>
-                                <GridViewColumn Header="Used" Width="auto"  DisplayMemberBinding="{Binding Used}" >
+                                <GridViewColumn Header="Rules" Width="auto" DisplayMemberBinding="{Binding Rule}">
                                 </GridViewColumn>
                                 <GridViewColumn Header="Fact" Width="auto" DisplayMemberBinding="{Binding Fact}" >
                                 </GridViewColumn>
