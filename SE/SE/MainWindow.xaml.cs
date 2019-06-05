@@ -40,13 +40,13 @@ namespace SE
 
             InferenceSteps.ItemsSource = Inference;
 
-            PlaySound();
+            //PlaySound();
             ShowHelloMessage();
         }
 
         private void ShowHelloMessage()
         {
-            if(MessageBox.Show("Witaj w piekle, Przypomne ci teraz koszmar SE!!!", "Koszmar", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            if(MessageBox.Show("Witaj w piekle, Przypomne ci teraz koszmar SE!!! \nChcesz podjąć wyzwanie?", "Koszmar", MessageBoxButton.YesNo) == MessageBoxResult.No)
             {
                 MessageBox.Show("Już się poddałeś?","Buhahaha");
                 this.Close();
@@ -108,12 +108,9 @@ namespace SE
             dialog.SetIndeterminate();
             await Task.Run(() =>
             {
-
-
-System.Threading.Thread.Sleep(2000);
-
+                System.Threading.Thread.Sleep(2000);
             });
-        await    dialog.CloseAsync();
+            await dialog.CloseAsync();
         }
 
         private async void OnBackwadAsync(object sender, RoutedEventArgs e)

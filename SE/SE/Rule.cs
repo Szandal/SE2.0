@@ -10,9 +10,10 @@ namespace SE
     {
         private string Conclusion;
         private List<string> Evidence;
-
-        public Rule(string Conclusion, List<string> Evidence)
+        private readonly string FullRule;
+        public Rule(string Conclusion, List<string> Evidence, string FullRule)
         {
+            this.FullRule = FullRule;
             this.Conclusion = Conclusion;
             this.Evidence = Evidence;
         }
@@ -26,7 +27,10 @@ namespace SE
         {
             return Conclusion;
         }
-
+        public string GetRule()
+        {
+            return FullRule;
+        }
         public List<string> GetEvidence()
         {
             return Evidence;

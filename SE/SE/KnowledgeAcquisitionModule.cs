@@ -27,7 +27,7 @@ namespace SE
                 string [] elsements = rule.Split(new char[] {'=','+'});
                 List<string> Evidence = elsements.ToList();
                 Evidence.RemoveAt(Evidence.Count-1);
-                return new Rule(elsements.Last(), Evidence);
+                return new Rule(elsements.Last(), Evidence, rule);
             }
             return null;
         }
