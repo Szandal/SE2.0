@@ -28,7 +28,7 @@
                         <Label>Wybierz strategie doboru reguł :</Label>
                         <RadioButton GroupName="InferenceStrategy" Name="FreshnessStrategy" Checked="InferenceStrategyRadioButton" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top">Freshness Strategy</RadioButton>
                         <RadioButton GroupName="InferenceStrategy" Name="StrategyOfSpecificity" Checked="InferenceStrategyRadioButton" HorizontalAlignment="Left" VerticalAlignment="Top" >Strategy Of Specificity</RadioButton>
-                        <Image gif:ImageBehavior.AnimatedSource="Images/cat.gif"/>
+                        <Image gif:ImageBehavior.AnimatedSource="Images/cat2.gif"/>
                     </StackPanel>
                     <ListView Name="InferenceSteps"   Grid.Column="1"  VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.View>
@@ -57,6 +57,7 @@
                         <Button Name="AddFact" Margin="5,5,5,5" Grid.Row="0" Content="Dodaj fakt" Width="Auto" Click="OnAddFactAsync"/>
                         <Button Name="DelRule" Margin="5,5,5,5" Grid.Row="0" Content="Usuń regułe" Width="Auto" Click="OnDelRuleAsync"/>
                         <Button Name="DelFact" Margin="5,5,5,5" Grid.Row="0" Content="Usuń fakt" Width="Auto" Click="OnDelFactAsync"/>
+                        <Image gif:ImageBehavior.AnimatedSource="Images/cat.gif"/>
                     </StackPanel>
                     <ListView Name="RuleList" SelectionMode="Single"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1">
                         <ListView.View >
