@@ -29,7 +29,7 @@ namespace SE
         KnowledgeBaseModule KnowledgeBaseModule = new KnowledgeBaseModule();
         InferenceModule InferenceModule = new InferenceModule();
         ExplanatoryModule ExplanatoryModule = new ExplanatoryModule();
-       List<Inference> Inference = new List<Inference>();
+        List<Inference> Inference = new List<Inference>();
         #endregion
 
         public MainWindow()
@@ -101,22 +101,40 @@ namespace SE
         public ProgressDialogController dialog;
         private async void Forward_Click(object sender, RoutedEventArgs e)
         {
-     
 
-            dialog = await this.ShowProgressAsync("Please wait...", "<head><body><Inner> welcome </head> </Inner> <Outer> Bye</Outer></body></head>", false,null);
-
-            dialog.SetIndeterminate();
-            await Task.Run(() =>
+            try
             {
-                System.Threading.Thread.Sleep(2000);
-            });
-            await dialog.CloseAsync();
+                Inference.Clear();
+                Inference = InferenceModule.ForwardInference(KnowledgeBaseModule);
+                InferenceSteps.ItemsSource = Inference;
+            }
+            catch (Exception ex)
+            {
+                await this.ShowMessageAsync("Error", ex.Message);
+
+            }
+
+
+
+            //dialog = await this.ShowProgressAsync("Please wait...", "<head><body><Inner> welcome </head> </Inner> <Outer> Bye</Outer></body></head>", false,null);
+            //dialog.SetIndeterminate();
+            //await Task.Run(() =>
+            //{
+            //    System.Threading.Thread.Sleep(2000);
+            //});
+            //await dialog.CloseAsync();
         }
 
-        private async void OnBackwadAsync(object sender, RoutedEventArgs e)
+        private async void Backward_Click(object sender, RoutedEventArgs e)
         {
             string hypotes = await this.ShowInputAsync("Podaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
             //Cała reszta wnioskowania
         }
+
+        private async void InferenceStrategyRadioButton(object sender, RoutedEventArgs e)
+        {
+            InferenceModule.SetActiveStrategy((sender as RadioButton).Name);
+        }
+        
     }
 }

@@ -28,13 +28,13 @@ namespace SE
                
                 if (RuleCanBeUsed(Rule, KnowledgeBase.GetFacts()) && !KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
                 {
-                    inferences.Add(new Inference( Rule.ToString(), KnowledgeBase.ToString()));
+                    inferences.Add(new Inference( Rule.GetRule(), KnowledgeBase.ToString()));
                     KnowledgeBase.AddFact(Rule.GetConclusion());
 
                 }
                 else
                 {
-                    inferences.Add(new Inference(Rule.ToString(), "Not Used"));
+                    inferences.Add(new Inference(Rule.GetRule(), "Not Used"));
                     if (!KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
                     {
                         NotUsed.Add(Rule);
