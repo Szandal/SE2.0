@@ -40,7 +40,21 @@ namespace SE
 
             InferenceSteps.ItemsSource = Inference;
 
-            PlaySound();
+            //PlaySound();
+            ShowHelloMessage();
+        }
+
+        private void ShowHelloMessage()
+        {
+            if(MessageBox.Show("Witaj w piekle, Przypomne ci teraz koszmar SE!!! \nChcesz podjąć wyzwanie?", "Koszmar", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            {
+                MessageBox.Show("Już się poddałeś?","Buhahaha");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("So, Let's play a game!","Wow");
+            }
         }
 
         private void PlaySound()
@@ -69,11 +83,19 @@ namespace SE
         private async void OnAddRuleAsync(object sender, RoutedEventArgs e)
         {
             string newRule = await this.ShowInputAsync("Dodaj Regułę","Wpisz regułę (np. \"A+B=C\")",null);
+            if(newRule == null||newRule == "")
+            {
+                return;
+            }
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(newRule));
         }
         private async void OnAddFactAsync(object sender, RoutedEventArgs e)
         {
             string newFact = await this.ShowInputAsync("Dodaj Fakt", "Wpisz Fakt (np. \"A\",\"Kaszel\" itp.)", null);
+            if (newFact == null || newFact == "")
+            {
+                return;
+            }
             KnowledgeBaseModule.AddFact(newFact);
         }
         public ProgressDialogController dialog;
@@ -86,12 +108,9 @@ namespace SE
             dialog.SetIndeterminate();
             await Task.Run(() =>
             {
-
-
-System.Threading.Thread.Sleep(2000);
-
+                System.Threading.Thread.Sleep(2000);
             });
-        await    dialog.CloseAsync();
+            await dialog.CloseAsync();
         }
 
         private async void OnBackwadAsync(object sender, RoutedEventArgs e)
