@@ -29,6 +29,7 @@ namespace SE
         KnowledgeBaseModule KnowledgeBaseModule = new KnowledgeBaseModule();
         InferenceModule InferenceModule = new InferenceModule();
         ExplanatoryModule ExplanatoryModule = new ExplanatoryModule();
+       List<Inference> Inference = new List<Inference>();
         #endregion
 
         public MainWindow()
@@ -36,6 +37,9 @@ namespace SE
             InitializeComponent();
             RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
             InitializeKnowledgeBase();
+
+            InferenceSteps.ItemsSource = Inference;
+
             PlaySound();
             ShowHelloMessage();
         }
@@ -56,7 +60,7 @@ namespace SE
         private void PlaySound()
         {
             System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer();
-            soundPlayer.SoundLocation = "1.wav";
+            soundPlayer.SoundLocation = @"Music\1.wav";
             soundPlayer.Load();
             soundPlayer.Play();
         }
@@ -72,6 +76,8 @@ namespace SE
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A+B=H"));
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("H+C=Z"));
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("G+S=R"));
+            //Inference.Add(new Inference("asd", "123"));
+  
         }
 
         private async void OnAddRuleAsync(object sender, RoutedEventArgs e)

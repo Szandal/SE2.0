@@ -63,13 +63,14 @@
     <Compile Include="Exceptions\WrongRule.cs" />
     <Compile Include="Exceptions\WrongStrategy.cs" />
     <Compile Include="ExplanatoryModule.cs" />
-    <Compile Include="InputBox.xaml.cs">
+    <Compile Include="CustomUI\InputBox.xaml.cs">
       <DependentUpon>InputBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inference.cs" />
     <Compile Include="KnowledgeAcquisitionModule.cs" />
     <Compile Include="Rule.cs" />
     <Compile Include="RuleStrategy.cs" />
-    <Page Include="InputBox.xaml">
+    <Page Include="CustomUI\InputBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,9 +120,13 @@
       <Version>1.6.5</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="1.wav" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Music\1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
