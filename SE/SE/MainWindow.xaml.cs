@@ -35,14 +35,22 @@ namespace SE
         public MainWindow()
         {
             InitializeComponent();
-            RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
-            FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
+            ResetUI();
             InitializeKnowledgeBase();
-            InferenceSteps.ItemsSource = Inference;
+      
             //PlaySound();
             ShowHelloMessage();
         }
 
+        private void ResetUI()
+        {
+            RuleList.ItemsSource = null;
+            FactList.ItemsSource = null;
+            InferenceSteps.ItemsSource = null;
+            RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
+            FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
+            InferenceSteps.ItemsSource = Inference;
+        }
         private void ShowHelloMessage()
         {
             if(MessageBox.Show("Witaj w piekle, Przypomne ci teraz koszmar SE!!! \nChcesz podjąć wyzwanie?", "Koszmar", MessageBoxButton.YesNo) == MessageBoxResult.No)
@@ -87,8 +95,7 @@ namespace SE
                 return;
             }
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(newRule));
-            RuleList.ItemsSource = null;
-            RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
+            ResetUI();
         }
         private async void OnAddFactAsync(object sender, RoutedEventArgs e)
         {
@@ -98,8 +105,7 @@ namespace SE
                 return;
             }
             KnowledgeBaseModule.AddFact(newFact);
-            FactList.ItemsSource = null;
-            FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
+            ResetUI();
         }
         public ProgressDialogController dialog;
         private async void Forward_Click(object sender, RoutedEventArgs e)
@@ -109,7 +115,7 @@ namespace SE
             {
                 Inference.Clear();
                 Inference = InferenceModule.ForwardInference(KnowledgeBaseModule);
-                InferenceSteps.ItemsSource = Inference;
+                ResetUI();
             }
             catch (Exception ex)
             {
@@ -133,9 +139,11 @@ namespace SE
             string hypotes = await this.ShowInputAsync("Podaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
             if (hypotes == null || hypotes == "")
             {
-                return;
-            }
-            //Cała reszta wnioskowania
+
+            
+
+            }   //Cała reszta wnioskowania
+       
         }
 
         private async void InferenceStrategyRadioButton(object sender, RoutedEventArgs e)
