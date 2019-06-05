@@ -37,11 +37,6 @@ namespace SE
             InitializeComponent();
             ResetUI();
             InitializeKnowledgeBase();
-
-            Payment pay = new Payment();
-
-            var cos = pay.payAsync().Result;
-            Process.Start(cos);
             //PlaySound();
             ShowHelloMessage();
         }
@@ -200,6 +195,12 @@ namespace SE
             KnowledgeBaseModule.DelFact(fact);
             FactList.ItemsSource = null;
             FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
+        }
+
+        private void Pay_Click(object sender, RoutedEventArgs e)
+        {
+            Payment payment = new Payment();
+            payment.payAsync();
         }
     }
 }
