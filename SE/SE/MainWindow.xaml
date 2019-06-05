@@ -27,7 +27,7 @@
                         <Label>Wybierz strategie doboru reguł :</Label>
                         <RadioButton GroupName="InferenceStrategy" Name="FreshnessStrategy" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top">Freshness Strategy</RadioButton>
                         <RadioButton GroupName="InferenceStrategy" Name="StrategyOfSpecificity" HorizontalAlignment="Left" VerticalAlignment="Top" >Strategy Of Specificity</RadioButton>
-   
+                        
                     </StackPanel>
                     <ListView Name="InferenceSteps"   Grid.Column="1"  VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.View>
@@ -72,8 +72,7 @@
                     <ListView Name="FactList" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Fakt" DisplayMemberBinding="{Binding Fakt}"/>
-                                <GridViewColumn Header="Usuń"/>
+                                <GridViewColumn Header="ListOfFacts"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

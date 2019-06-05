@@ -60,7 +60,6 @@ namespace SE
         {
             if (rule.IndexOf('=') == -1 || rule.IndexOf('=') != rule.LastIndexOf('='))
             {
-                //zrobić własne wyjątki
                 throw new WrongRule("zła zasada");
             }
             string []fakts = rule.Split(new char[]{'=', '+' });
@@ -68,7 +67,6 @@ namespace SE
             {
                 if (!CheckFact(fakt))
                 {
-                    //zrobić własne wyjątki
                     throw new WrongRule("zła zasada");
                 }
             }
@@ -76,7 +74,7 @@ namespace SE
         }
         private bool CheckFact(string fakt)
         {
-            Regex rx = new Regex(@"[A-Za-z0-9]");
+            Regex rx = new Regex(@"[A-Za-z0-9]{1,10}");
             MatchCollection match = rx.Matches(fakt);
             if (match.Count != 1)
             {
