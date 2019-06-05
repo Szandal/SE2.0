@@ -128,10 +128,12 @@ namespace SE
             //await dialog.CloseAsync();
         }
 
+
+
         private async void Backward_Click(object sender, RoutedEventArgs e)
         {
             string hypotes = await this.ShowInputAsync("Podaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
-            if (hypotes == null || hypotes == "")
+            if (hypotes == null || hypotes == ""||!KnowledgeAcquisitionModule.CheckFact(hypotes))
             {
                 return;
             }

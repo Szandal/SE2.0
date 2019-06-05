@@ -72,7 +72,7 @@ namespace SE
             }
             return true;
         }
-        private bool CheckFact(string fakt)
+        public bool CheckFact(string fakt)
         {
             Regex rx = new Regex(@"[A-Za-z0-9]{1,10}");
             MatchCollection match = rx.Matches(fakt);
