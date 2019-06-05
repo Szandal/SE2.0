@@ -32,5 +32,17 @@ namespace SE
             return Evidence;
         }
 
+        public override string ToString()
+        {
+            string temp = "";
+            foreach (var item in Evidence)
+            {
+                temp += item + "+";
+
+            }
+            temp += "=" + Conclusion;
+            return temp;
+        }
+
     }
 }

@@ -16,20 +16,25 @@ namespace SE
 
 
 
-        public LinkedList<string> ForwardInference(KnowledgeBaseModule KnowledgeBase)
+        public List<Inference> ForwardInference(KnowledgeBaseModule KnowledgeBase)
         {
+            List<Inference> inferences = new List<Inference>();
             List<Rule> RulesToUse = new List<Rule>(KnowledgeBase.GetRules());
             List<Rule> NotUsed = new List<Rule>();
             int numberOfNotUsed = 0;
             while(RulesToUse!=NotUsed)
             {
                 Rule Rule = RulesStrategy.GetRule(RulesToUse);
+               
                 if (RuleCanBeUsed(Rule, KnowledgeBase.GetFacts()) && !KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
                 {
+                    inferences.Add(new Inference( Rule.ToString(), KnowledgeBase.ToString()));
                     KnowledgeBase.AddFact(Rule.GetConclusion());
+
                 }
                 else
                 {
+                    inferences.Add(new Inference(Rule.ToString(), "Not Used"));
                     if (!KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
                     {
                         NotUsed.Add(Rule);
@@ -48,7 +53,7 @@ namespace SE
                     NotUsed.Clear();
                 }
             }
-            return KnowledgeBase.GetFacts();
+            return inferences;
         }
 
 

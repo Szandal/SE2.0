@@ -32,5 +32,11 @@ namespace SE
         {
             return ListOfRules;
         }
+
+        public override string ToString()
+        {
+            var temp = string.Concat(ListOfFacts.ToArray());
+            return temp;
+        }
     }
 }
