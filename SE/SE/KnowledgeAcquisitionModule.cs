@@ -13,7 +13,16 @@ namespace SE
 
         public Rule AddRule(string rule)
         {
-            if (CheckRule(rule))
+            bool isGoodRule = false;
+            try
+            {
+                isGoodRule = CheckRule(rule);
+            }
+            catch(WrongRule wr)
+            {
+
+            }
+            if (isGoodRule)
             {
                 string [] elsements = rule.Split(new char[] {'=','+'});
                 List<string> Evidence = elsements.ToList();
@@ -24,7 +33,16 @@ namespace SE
         }
         public string AddFact(string fact)
         {
-            if (CheckFact(fact))
+            bool isGoodFact = false;
+            try
+            {
+                isGoodFact = CheckRule(fact);
+            }
+            catch (WrongFact wf)
+            {
+
+            }
+            if (isGoodFact)
                 return fact;
             return null;
         }
