@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SE
 {
-    class KnowledgeBaseModule
+    class KnowledgeBaseModule 
     {
         private List<Rule> ListOfRules;
         private LinkedList<string> ListOfFacts;
+        
 
         public KnowledgeBaseModule()
         {

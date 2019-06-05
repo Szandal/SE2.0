@@ -87,6 +87,7 @@ namespace SE
                 return;
             }
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(newRule));
+            RuleList.ItemsSource = null;
             RuleList.ItemsSource = KnowledgeBaseModule.GetRules();
         }
         private async void OnAddFactAsync(object sender, RoutedEventArgs e)
@@ -97,6 +98,7 @@ namespace SE
                 return;
             }
             KnowledgeBaseModule.AddFact(newFact);
+            FactList.ItemsSource = null;
             FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
         }
         public ProgressDialogController dialog;
