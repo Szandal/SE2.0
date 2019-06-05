@@ -146,9 +146,18 @@ namespace SE
                 return;
 
             }   //Cała reszta wnioskowania
+            try
+            {
+                Inference.Clear();
+                InferenceModule.BackwardsInference(hypotes, KnowledgeBaseModule, Inference);
+                ResetUI();
+            }
+            catch (Exception ex)
+            {
+                await this.ShowMessageAsync("Error", ex.Message);
 
-            InferenceModule.BackwardsInference(hypotes, KnowledgeBaseModule, Inference);
-            ResetUI();
+            }
+ 
 
         }
 
