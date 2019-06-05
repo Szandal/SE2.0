@@ -121,6 +121,9 @@
     <PackageReference Include="MahApps.Metro">
       <Version>1.6.5</Version>
     </PackageReference>
+    <PackageReference Include="WpfAnimatedGif">
+      <Version>1.4.18</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.2</Version>
     </PackageReference>
@@ -128,6 +131,8 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\0.jpg" />
+    <Resource Include="Images\cat.gif" />
+    <Resource Include="Images\cat2.gif" />
     <Content Include="Images\pepe1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
