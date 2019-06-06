@@ -13,7 +13,17 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         WindowStartupLocation="CenterScreen" Width="700" Height="500" MinWidth="700" MinHeight="500"
         mc:Ignorable="d"
-        Title="MainWindow">
+        Title="Koszmar z ulicy ALicji">
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Image >
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/pepe1" />
+                </Image.Source>
+            </Image>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
     <Grid>
         <TabControl>
             <TabItem Header="Wnioskowanie">
@@ -83,7 +93,7 @@
                         <ColumnDefinition Width="6*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <Button Name="Pay" Content="Wykup dostęp"/>
+                        <Button Name="Pay" Content="Wykup dostęp" Click="Pay_Click"/>
                     </StackPanel>
                     <StackPanel Name="Info" Grid.Column="1">
                         <TextBlock TextWrapping="Wrap" Name="DemoInfo" FontSize="22" IsEnabled="False" Controls:TextBoxHelper.WatermarkWrapping="Wrap" Width="564" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Controls:TextBoxHelper.UseFloatingWatermark="True" Height="119" Margin="12,0"  ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False"> Drogi urzytkowniku, jest to twoja pierwszy i jesdyny darmowy opis objaśniający. W skrócie: Będą ci się śniły koszmary po nauce obsługi tego programu. BUHAHAHAHAHAHA!!!"</TextBlock>
