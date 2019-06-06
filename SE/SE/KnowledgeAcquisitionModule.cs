@@ -20,7 +20,7 @@ namespace SE
             }
             catch(WrongRule wr)
             {
-
+                throw wr;
             }
             if (isGoodRule)
             {
@@ -29,21 +29,6 @@ namespace SE
                 Evidence.RemoveAt(Evidence.Count-1);
                 return new Rule(elsements.Last(), Evidence, rule);
             }
-            return null;
-        }
-        public string AddFact(string fact)
-        {
-            bool isGoodFact = false;
-            try
-            {
-                isGoodFact = CheckRule(fact);
-            }
-            catch (WrongFact wf)
-            {
-
-            }
-            if (isGoodFact)
-                return fact;
             return null;
         }
 
@@ -56,7 +41,7 @@ namespace SE
             ListOfFacts.Remove(Fact);
         }
 
-        private bool CheckRule(string rule)
+        public bool CheckRule(string rule)
         {
             if (rule.IndexOf('=') == -1 || rule.IndexOf('=') != rule.LastIndexOf('='))
             {

@@ -34,10 +34,23 @@ namespace SE
         {
             return ListOfRules;
         }
+        public List<string> GetFullRules()
+        {
+            List<string> ListOfFullRules = new List<string>();
+            foreach(Rule rule in ListOfRules)
+            {
+                ListOfFullRules.Add(rule.GetRule());
+            }
+            return ListOfFullRules;
+        }
 
         public override string ToString()
         {
-            var temp = string.Concat(ListOfFacts.ToArray());
+            string temp = "";
+            foreach(string fact in ListOfFacts)
+            {
+                temp += fact + " ";
+            }
             return temp;
         }
 

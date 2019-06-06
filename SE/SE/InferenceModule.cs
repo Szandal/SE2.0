@@ -17,11 +17,12 @@ namespace SE
 
 
 
-        public List<Inference> ForwardInference(KnowledgeBaseModule KnowledgeBase)
+        public List<Inference> ForwardInference(KnowledgeBaseModule KnowledgeBase, bool HideNotUsed)
         {
             List<Inference> inferences = new List<Inference>();
             List<Rule> RulesToUse = new List<Rule>(KnowledgeBase.GetRules());
             List<Rule> NotUsed = new List<Rule>();
+            inferences.Add(new Inference("Posiadane fakty:", KnowledgeBase.ToString()));
             int numberOfNotUsed = 0;
             while(RulesToUse!=NotUsed)
             {
@@ -29,12 +30,14 @@ namespace SE
                
                 if (RuleCanBeUsed(Rule, KnowledgeBase.GetFacts()) && !KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
                 {
-                    inferences.Add(new Inference( Rule.GetRule(), KnowledgeBase.ToString()));
                     KnowledgeBase.AddFact(Rule.GetConclusion());
+                    inferences.Add(new Inference( Rule.GetRule(), KnowledgeBase.ToString()));
+                    
                 }
                 else
                 {
-                    inferences.Add(new Inference(Rule.GetRule(), "Not Used"));
+                    if(!HideNotUsed)
+                        inferences.Add(new Inference(Rule.GetRule(), "Not Used"));
                     if (!KnowledgeBase.GetFacts().Contains(Rule.GetConclusion()))
                     {
                         NotUsed.Add(Rule);
@@ -47,12 +50,14 @@ namespace SE
                     {
                         break;
                     }
+                    NotUsed.Reverse();
                     RulesToUse = NotUsed.ToList();
                     //RulesToUse.AddRange(NotUsed);
                     numberOfNotUsed = NotUsed.Count();
                     NotUsed.Clear();
                 }
             }
+            inferences.Add(new Inference("Posiadane fakty:", KnowledgeBase.ToString()));
             return inferences;
         }
 
@@ -63,6 +68,7 @@ namespace SE
 
             while (!KnowledgeBase.GetFacts().Contains(hypothesis))
             {
+                
                 if (LocalRuleList.Count() == 0)
                 {
                     throw new UnsuccessfulInference("Nieudane wnioskowanie");
@@ -87,6 +93,7 @@ namespace SE
                     List<bool> ListOfEvidenceCanBeUsed = new List<bool>();
                     foreach(string evidence in Rule.GetEvidence())
                     {
+                        inferences.Add(new Inference("Rekurencyjne wywołanie dla hipotezy: " + evidence + "\nw regule: " + Rule.GetRule(), KnowledgeBase.ToString()));
                         ListOfEvidenceCanBeUsed.Add(BackwardsInference(evidence, KnowledgeBase,inferences));
                     }
                     if (ListOfEvidenceCanBeUsed.Contains(false))
@@ -96,15 +103,14 @@ namespace SE
                     }
                     else
                     {
-                        inferences.Add(new Inference(Rule.GetRule(), "Not used"));
-
+                        inferences.Add(new Inference(Rule.GetRule(), KnowledgeBase.ToString()));
                         KnowledgeBase.AddFact(hypothesis);
                     }
                     
                 }
             }
 
-            inferences.Add(new Inference("Hipoteza znajduje się w bazie faktów",KnowledgeBase.ToString()));
+            inferences.Add(new Inference("Hipoteza "+ hypothesis +" znajduje się w bazie faktów",KnowledgeBase.ToString()));
             return true;
         }
 

@@ -133,6 +133,8 @@
     <Resource Include="Images\0.jpg" />
     <Resource Include="Images\cat.gif" />
     <Resource Include="Images\cat2.gif" />
+    <Resource Include="Images\aa.png" />
+    <Resource Include="Images\cat3.gif" />
     <Content Include="Images\pepe1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -142,6 +144,7 @@
     <Resource Include="Images\pepe3.png" />
     <Resource Include="Images\pepe4.jpg" />
     <Resource Include="Images\pepe5.jpg" />
+    <Resource Include="Images\sad.png" />
     <Content Include="Music\1.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

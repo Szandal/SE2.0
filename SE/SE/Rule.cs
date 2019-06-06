@@ -38,14 +38,8 @@ namespace SE
 
         public override string ToString()
         {
-            string temp = "";
-            foreach (var item in Evidence)
-            {
-                temp += item + "+";
+            return FullRule;
 
-            }
-            temp += "=" + Conclusion;
-            return temp;
         }
 
     }

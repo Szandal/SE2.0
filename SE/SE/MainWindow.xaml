@@ -13,19 +13,23 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         WindowStartupLocation="CenterScreen" Width="700" Height="500" MinWidth="700" MinHeight="500"
         mc:Ignorable="d"
-        Title="Koszmar z ulicy ALicji">
+        Title="Twój najgorszy koszmar">
 
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Image >
                 <Image.Source>
-                    <BitmapImage UriSource="/Images/pepe1" />
+                    <BitmapImage UriSource="/Images/sad.png" />
                 </Image.Source>
             </Image>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <Grid>
-        <TabControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="142*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.ColumnSpan="2">
             <TabItem Header="Wnioskowanie">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -35,6 +39,7 @@
                     <StackPanel Grid.Column="0">
                         <Button Name="Forward" Margin="5,5,5,5" Content="W Przód" Width="Auto" Click="Forward_Click" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <Button Name="Backward" Margin="5,5,5,5" Content="W Tył" Width="Auto" Click="Backward_Click" HorizontalAlignment="Center"/>
+                        <CheckBox Name="HideNotUsed" Margin="5,5,5,5"  Width="Auto">Ukryj nieużyte reguły</CheckBox>
                         <Label>Wybierz strategie doboru reguł :</Label>
                         <RadioButton GroupName="InferenceStrategy" Name="FreshnessStrategy" Checked="InferenceStrategyRadioButton" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top">Freshness Strategy</RadioButton>
                         <RadioButton GroupName="InferenceStrategy" Name="StrategyOfSpecificity" Checked="InferenceStrategyRadioButton" HorizontalAlignment="Left" VerticalAlignment="Top" >Strategy Of Specificity</RadioButton>
@@ -43,18 +48,18 @@
                     <ListView Name="InferenceSteps" Margin="12,0"  Grid.Column="1"  VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Rules" Width="auto" DisplayMemberBinding="{Binding Rule}">
+                                <GridViewColumn Width="225" Header="Rules"  DisplayMemberBinding="{Binding Rule}">
                                 </GridViewColumn>
-                                <GridViewColumn Header="Fact" Width="auto" DisplayMemberBinding="{Binding Fact}" >
+                                <GridViewColumn Width="225" Header="Fact" DisplayMemberBinding="{Binding Fact}" >
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
 
                 </Grid>
-               
+
             </TabItem>
-          
+
             <TabItem Header="Dane">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -69,18 +74,17 @@
                         <Button Name="DelFact" Margin="5,5,5,5" Grid.Row="0" Content="Usuń fakt" Width="Auto" Click="OnDelFactAsync"/>
                         <Image gif:ImageBehavior.AnimatedSource="Images/cat.gif"/>
                     </StackPanel>
-                    <ListView Name="RuleList" Margin="12,0" SelectionMode="Single"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1">
+                    <ListView Name="RuleList"  Margin="12,0" SelectionMode="Single"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1">
                         <ListView.View >
                             <GridView >
-                                <GridViewColumn Header="ListOfRules"  />
-                                <!--<GridViewColumn Header="Usuń"/>-->
+                                <GridViewColumn Header="ListOfRule" Width="250"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
                     <ListView Name="FactList" Margin="12,0" SelectionMode="Single" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ListOfFacts"/>
+                                <GridViewColumn Header="ListOfFacts" Width="250"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -90,18 +94,21 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
                         <Button Name="Pay" Content="Wykup dostęp" Click="Pay_Click"/>
+                        <Image gif:ImageBehavior.AnimatedSource="Images/cat3.gif"/>
                     </StackPanel>
                     <StackPanel Name="Info" Grid.Column="1">
-                        <TextBlock TextWrapping="Wrap" Name="DemoInfo" FontSize="22" IsEnabled="False" Controls:TextBoxHelper.WatermarkWrapping="Wrap" Width="564" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Controls:TextBoxHelper.UseFloatingWatermark="True" Height="119" Margin="12,0"  ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False"> Drogi urzytkowniku, jest to twoja pierwszy i jesdyny darmowy opis objaśniający. W skrócie: Będą ci się śniły koszmary po nauce obsługi tego programu. BUHAHAHAHAHAHA!!!"</TextBlock>
-                        
+                        <TextBlock TextWrapping="Wrap" Name="DemoInfo" FontSize="22" IsEnabled="False" Controls:TextBoxHelper.WatermarkWrapping="Wrap" Width="564" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Controls:TextBoxHelper.UseFloatingWatermark="True" Height="119" Margin="12,0"  ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False"> Drogi urzytkowniku, jest to twoja pierwszy i jedyny darmowy opis objaśniający. W skrócie: Będą ci się śniły koszmary po nauce obsługi tego programu. BUHAHAHAHAHAHA!!!</TextBlock>
+                        <Separator/>
+                        <TextBlock TextWrapping="Wrap" Name="PayInfo" FontSize="22" IsEnabled="False" Controls:TextBoxHelper.WatermarkWrapping="Wrap" Width="564" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Controls:TextBoxHelper.UseFloatingWatermark="True" Height="119" Margin="12,0"  ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False"> Aby Wykupić więcej bezsensownych objaśnień których i tak nie zrozumiesz wykup do nich dostęp używając przycisku po lewej. Zanim to zrobisz lepiej usiądź bo możesz paść z wrażenia przez cenę. :)</TextBlock>
+
                     </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
     </Grid>
 </Controls:MetroWindow>

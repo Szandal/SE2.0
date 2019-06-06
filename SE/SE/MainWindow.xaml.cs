@@ -37,7 +37,7 @@ namespace SE
             InitializeComponent();
             ResetUI();
             InitializeKnowledgeBase();
-            //PlaySound();
+            PlaySound();
             ShowHelloMessage();
         }
 
@@ -73,36 +73,58 @@ namespace SE
 
         private void InitializeKnowledgeBase()
         {
-            string facts = "ABCDEFGK";
+            string facts = "ABCEFGK";
             foreach(char fact in facts)
             {
                 KnowledgeBaseModule.AddFact(fact.ToString());
             }
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A+B+C=D"));
-            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A+B=H"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A+D=H"));
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("H+C=Z"));
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("G+S=R"));
-            //Inference.Add(new Inference("asd", "123"));
-  
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("AA+SA=RA"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A3+B3+C3=D3"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("A3+D3=H3"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("H3+C3=Z3"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("G3+S3=R3"));
+            KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule("AA3+SA3=RA3"));
+
         }
 
         private async void OnAddRuleAsync(object sender, RoutedEventArgs e)
         {
             string newRule = await this.ShowInputAsync("Dodaj Regułę","Wpisz regułę (np. \"A+B=C\")",null);
-            if(newRule == null||newRule == "")
+            try
             {
-                return;
+                if(newRule == null||newRule == ""||!KnowledgeAcquisitionModule.CheckRule(newRule))
+                {
+                    await this.ShowMessageAsync("?!?!?!", "A podałeś jakiś fakt??");
+                    return;
+                }
+            }catch(Exception ex)
+            {
+                await this.ShowMessageAsync("Error", ex.Message);
             }
+            
             KnowledgeBaseModule.AddRule(KnowledgeAcquisitionModule.AddRule(newRule));
             ResetUI();
         }
         private async void OnAddFactAsync(object sender, RoutedEventArgs e)
         {
             string newFact = await this.ShowInputAsync("Dodaj Fakt", "Wpisz Fakt (np. \"A\",\"Kaszel\" itp.)", null);
-            if (newFact == null || newFact == "")
+            try
             {
-                return;
+                if (newFact == null || newFact == ""||!KnowledgeAcquisitionModule.CheckFact(newFact))
+                {
+                    await this.ShowMessageAsync("?!?!?!", "A podałeś jakiś fakt??");
+                    return;
+                }
             }
+            catch(Exception ex)
+            {
+                await this.ShowMessageAsync("Error", ex.Message);
+            }
+            
             KnowledgeBaseModule.AddFact(newFact);
             ResetUI();
         }
@@ -113,7 +135,8 @@ namespace SE
             try
             {
                 Inference.Clear();
-                Inference = InferenceModule.ForwardInference(KnowledgeBaseModule);
+                bool Hide = HideNotUsed.IsChecked.Value;
+                Inference = InferenceModule.ForwardInference(KnowledgeBaseModule,Hide);
                 ResetUI();
             }
             catch (Exception ex)
@@ -139,14 +162,13 @@ namespace SE
         {
             Inference.Clear();
             string hypotes = await this.ShowInputAsync("Podaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
-            if (hypotes == null || hypotes == ""||!KnowledgeAcquisitionModule.CheckFact(hypotes))
-            {
-
-                return;
-
-            }   //Cała reszta wnioskowania
             try
             {
+                if (hypotes == null || hypotes == ""||!KnowledgeAcquisitionModule.CheckFact(hypotes))
+                {
+                    await this.ShowMessageAsync("?!?!?!", "A podałeś jakąś hipotezę??");
+                    return;
+                }
                 Inference.Clear();
                 InferenceModule.BackwardsInference(hypotes, KnowledgeBaseModule, Inference);
                 ResetUI();
@@ -154,13 +176,12 @@ namespace SE
             catch (Exception ex)
             {
                 await this.ShowMessageAsync("Error", ex.Message);
-
             }
  
 
         }
 
-        private async void InferenceStrategyRadioButton(object sender, RoutedEventArgs e)
+        private void InferenceStrategyRadioButton(object sender, RoutedEventArgs e)
         {
             InferenceModule.SetActiveStrategy((sender as RadioButton).Name);
         }
