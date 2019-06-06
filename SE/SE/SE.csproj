@@ -72,6 +72,9 @@
     <Compile Include="Payment.cs" />
     <Compile Include="Rule.cs" />
     <Compile Include="RuleStrategy.cs" />
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Page Include="CustomUI\InputBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -90,6 +93,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -133,6 +140,7 @@
     <Resource Include="Images\0.jpg" />
     <Resource Include="Images\cat.gif" />
     <Resource Include="Images\cat2.gif" />
+    <Resource Include="Images\Ricardo.gif" />
     <Content Include="Images\pepe1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -142,6 +150,7 @@
     <Resource Include="Images\pepe3.png" />
     <Resource Include="Images\pepe4.jpg" />
     <Resource Include="Images\pepe5.jpg" />
+    <Resource Include="Images\Ricardo.jpg" />
     <Content Include="Music\1.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

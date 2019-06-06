@@ -24,7 +24,9 @@
             </Image>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
-    <Grid>
+ 
+
+        <Grid>
         <TabControl>
             <TabItem Header="Wnioskowanie">
                 <Grid>
