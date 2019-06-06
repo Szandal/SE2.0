@@ -32,8 +32,20 @@ namespace SE
         List<Inference> Inference = new List<Inference>();
         #endregion
 
+        private readonly IDialogCoordinator _dialogCoordinator;
+
+        public MainWindow(IDialogCoordinator dialogCoordinator)
+        {
+            InitializeComponent();
+            ResetUI();
+            InitializeKnowledgeBase();
+            //PlaySound();
+            ShowHelloMessage();
+            _dialogCoordinator = dialogCoordinator;
+        }
         public MainWindow()
         {
+      
             InitializeComponent();
             ResetUI();
             InitializeKnowledgeBase();
@@ -144,21 +156,35 @@ namespace SE
                 await this.ShowMessageAsync("Error", ex.Message);
 
             }
+    
+          
+          
+
+            dialog = await this.ShowProgressAsync("","", false, null);
+            dialog.SetIndeterminate();
+
+            var item = new Window1();
+            item.Background = null;
+
+             await this.ShowMetroDialogAsync(item, null);
+  
+     
+
+            await Task.Run(() =>
+            {
+                System.Threading.Thread.Sleep(1000);
+               
+            });
+            await dialog.CloseAsync();
+            await this.HideMetroDialogAsync(item);
+          
 
 
-
-            //dialog = await this.ShowProgressAsync("Please wait...", "<head><body><Inner> welcome </head> </Inner> <Outer> Bye</Outer></body></head>", false,null);
-            //dialog.SetIndeterminate();
-            //await Task.Run(() =>
-            //{
-            //    System.Threading.Thread.Sleep(2000);
-            //});
-            //await dialog.CloseAsync();
         }
 
 
 
-        private async void Backward_Click(object sender, RoutedEventArgs e)
+    private async void Backward_Click(object sender, RoutedEventArgs e)
         {
             Inference.Clear();
             string hypotes = await this.ShowInputAsync("Podaj hipotezę", "Wpisz Fakt który chcesz udowodnić (np. \"A\",\"Kaszel\" itp.)", null);
@@ -217,11 +243,13 @@ namespace SE
             FactList.ItemsSource = null;
             FactList.ItemsSource = KnowledgeBaseModule.GetFacts();
         }
-
+        
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
             Payment payment = new Payment();
             payment.payAsync();
+           
         }
+        
     }
 }
